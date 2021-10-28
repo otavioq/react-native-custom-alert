@@ -1,6 +1,6 @@
 {
   "name": "react-native-custom-alert",
-  "version": "3.5.0",
+  "version": "1.0.0",
   "description": "Custom Alert native library for React Native",
   "main": "index.js",
   "scripts": {
@@ -8,25 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Clip-sub/react-native-custom-alert.git"
+    "url": "git+https://github.com/otavioq/react-native-custom-alert.git"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "keywords": [
-    "react",
-    "react-native",
-    "customalert",
-    "dialog",
-    "android",
-    "ios"
-  ],
-  "author": "Clip-sub",
-  "license": "MIT",
+  "keywords": [],
+  "author": "otavioq",
+  "license": "",
   "bugs": {
-    "url": "https://github.com/Clip-sub/react-native-custom-alert/issues"
+    "url": "https://github.com/otavioq/react-native-custom-alert/issues"
   },
-  "homepage": "https://github.com/Clip-sub/react-native-custom-alert#readme",
+  "homepage": "https://github.com/otavioq/react-native-custom-alert",
   "peerDependencies": {
     "react": "*",
     "react-native": "*"

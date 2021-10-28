@@ -1,4 +1,4 @@
-package com.clipsub.RNCustomAlert;
+package com.otavioq.RNCustomAlert;
 
 import android.graphics.Color;
 

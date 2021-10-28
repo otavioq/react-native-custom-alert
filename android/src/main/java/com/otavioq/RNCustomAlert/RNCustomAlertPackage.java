@@ -1,4 +1,4 @@
-package com.clipsub.RNCustomAlert;
+package com.otavioq.RNCustomAlert;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
