@@ -1,14 +1,14 @@
 {
-  "name": "react-native-sweet-alert",
+  "name": "react-native-custom-alert",
   "version": "3.5.0",
-  "description": "SweetAlert native library for React Native",
+  "description": "Custom Alert native library for React Native",
   "main": "index.js",
   "scripts": {
     "test": "npm test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Clip-sub/react-native-sweet-alert.git"
+    "url": "git+https://github.com/Clip-sub/react-native-custom-alert.git"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -16,7 +16,7 @@
   "keywords": [
     "react",
     "react-native",
-    "sweetalert",
+    "customalert",
     "dialog",
     "android",
     "ios"
@@ -24,9 +24,9 @@
   "author": "Clip-sub",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Clip-sub/react-native-sweet-alert/issues"
+    "url": "https://github.com/Clip-sub/react-native-custom-alert/issues"
   },
-  "homepage": "https://github.com/Clip-sub/react-native-sweet-alert#readme",
+  "homepage": "https://github.com/Clip-sub/react-native-custom-alert#readme",
   "peerDependencies": {
     "react": "*",
     "react-native": "*"

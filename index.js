@@ -1,5 +1,5 @@
 /**
- * @providesModule RNSweetAlert
+ * @providesModule RNCustomAlert
  * @author Doko
  * @flow
  */
@@ -8,7 +8,7 @@
 
 import React, { NativeModules, Platform } from 'react-native';
 
-const Native = Platform.OS === 'android' ? NativeModules.RNSweetAlert : NativeModules.SweetAlertManager;
+const Native = Platform.OS === 'android' ? NativeModules.RNCustomAlert : NativeModules.SweetAlertManager;
 
 const DEFAULT_OPTIONS = {
   title: '',
@@ -22,11 +22,11 @@ const DEFAULT_OPTIONS = {
   cancellable: true
 }
 
-const SweetAlert = {
+const CustomAlert = {
   showAlertWithOptions: (options, callback = () => {}) => {
     Native.showAlertWithOptions(options ? options : DEFAULT_OPTIONS, callback)
   },
   dismissAlert: () => Native.hideSweetAlert(),
 };
 
-export default SweetAlert;
+export default CustomAlert;

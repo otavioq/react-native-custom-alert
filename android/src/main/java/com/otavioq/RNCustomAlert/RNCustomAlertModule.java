@@ -1,4 +1,4 @@
-package com.clipsub.RNSweetAlert;
+package com.clipsub.RNCustomAlert;
 
 import android.graphics.Color;
 
@@ -11,16 +11,16 @@ import com.facebook.react.bridge.ReadableMap;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class RNSweetAlertModule extends ReactContextBaseJavaModule {
+public class RNCustomAlertModule extends ReactContextBaseJavaModule {
   private SweetAlertDialog sweetAlertDialog;
 
-  RNSweetAlertModule(final ReactApplicationContext reactContext) {
+  RNCustomAlertModule(final ReactApplicationContext reactContext) {
     super(reactContext);
   }
 
   @Override
   public String getName() {
-    return "RNSweetAlert";
+    return "RNCustomAlert";
   }
 
   @ReactMethod
@@ -29,8 +29,9 @@ public class RNSweetAlertModule extends ReactContextBaseJavaModule {
     String type = options.hasKey("style") ? options.getString("style") : "normal";
     String title = options.hasKey("title") ? options.getString("title") : "";
     String contentText = options.hasKey("subTitle") ? options.getString("subTitle") : "";
+    String confirmButtonTitle = options.hasKey("confirmButtonTitle") ? options.getString("confirmButtonTitle") : "Ok";
+    String otherButtonTitle = options.hasKey("otherButtonTitle") ? options.getBoolean("cancellable") == false ? null : options.getString("otherButtonTitle") : null;
     String barColor = options.hasKey("barColor") ? options.getString("barColor") : "";
-    boolean cancellable = !options.hasKey("cancellable") || options.getBoolean("cancellable");
     switch (type) {
       case "normal":
         sweetAlertDialog.changeAlertType(SweetAlertDialog.NORMAL_TYPE);
@@ -62,12 +63,14 @@ public class RNSweetAlertModule extends ReactContextBaseJavaModule {
     sweetAlertDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
       @Override
       public void onClick(SweetAlertDialog sweetAlertDialog) {
+        acceptCallback.invoke("cancelled");
         sweetAlertDialog.dismissWithAnimation();
       }
     });
     sweetAlertDialog.setTitleText(title);
+    sweetAlertDialog.setConfirmText(confirmButtonTitle);
+    sweetAlertDialog.setCancelText(otherButtonTitle);
     sweetAlertDialog.setContentText(contentText);
-    sweetAlertDialog.setCancelable(cancellable);
     if (!barColor.equals("")) {
       setBarColor(barColor);
     }
@@ -108,11 +111,6 @@ public class RNSweetAlertModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void showContentText(boolean isShow) {
     sweetAlertDialog.showContentText(isShow);
-  }
-
-  @ReactMethod
-  public void showCancelButton(boolean isShow) {
-    sweetAlertDialog.showCancelButton(isShow);
   }
 
   @ReactMethod

@@ -1,4 +1,4 @@
-package com.clipsub.RNSweetAlert;
+package com.clipsub.RNCustomAlert;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RNSweetAlertPackage implements ReactPackage {
+public class RNCustomAlertPackage implements ReactPackage {
 
   @Override
   public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
     List<NativeModule> modules = new ArrayList<>();
-    modules.add(new RNSweetAlertModule(reactContext));
+    modules.add(new RNCustomAlertModule(reactContext));
 
     return modules;
   }
