@@ -1,4 +1,6 @@
-buildscript {
+apply plugin: 'com.android.library'
+
+ buildscript {
     repositories {
         mavenCentral()
         jcenter()
@@ -10,7 +12,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.2'
-        classpath 'com.facebook.react:react-native:+'
+        classpath 'com.pnikosis:materialish-progress:1.7'
     }
 }
 
@@ -30,3 +32,8 @@ allprojects {
         maven { url "https://jitpack.io" }
     }
 }
+
+apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
+/* upload command:
+    gradlew -p library clean build uploadArchives --info
+ */

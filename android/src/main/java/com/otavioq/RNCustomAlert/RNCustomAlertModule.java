@@ -9,7 +9,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
+import CustomAlertDialog.src.main.java.SweetAlert.SweetAlertDialog;
 
 public class RNCustomAlertModule extends ReactContextBaseJavaModule {
   private SweetAlertDialog sweetAlertDialog;
@@ -29,8 +29,8 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
     sweetAlertDialog = new SweetAlertDialog(getCurrentActivity());
     
     String type = options.hasKey("style") ? options.getString("style") : "normal";
-    String title = options.hasKey("title") ? options.getString("title") : "";
-    String contentText = options.hasKey("subTitle") ? options.getString("subTitle") : "";
+    String title = options.hasKey("title") ? options.getString("title") : null;
+    String contentText = options.hasKey("subTitle") ? options.getString("subTitle") : null;
     String confirmButtonTitle = options.hasKey("confirmButtonTitle") ? options.getString("confirmButtonTitle") : null;
     String otherButtonTitle = options.hasKey("otherButtonTitle") ?  options.getString("otherButtonTitle") : null;
     String barColor = options.hasKey("barColor") ? options.getString("barColor") : "";
