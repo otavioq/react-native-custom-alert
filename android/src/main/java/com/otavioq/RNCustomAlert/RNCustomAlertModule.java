@@ -25,13 +25,16 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void showAlertWithOptions(ReadableMap options, final Callback acceptCallback) {
+
     sweetAlertDialog = new SweetAlertDialog(getCurrentActivity());
+    
     String type = options.hasKey("style") ? options.getString("style") : "normal";
     String title = options.hasKey("title") ? options.getString("title") : "";
     String contentText = options.hasKey("subTitle") ? options.getString("subTitle") : "";
-    String confirmButtonTitle = options.hasKey("confirmButtonTitle") ? options.getString("confirmButtonTitle") : "Ok";
-    String otherButtonTitle = options.hasKey("otherButtonTitle") ? options.getBoolean("cancellable") == false ? null : options.getString("otherButtonTitle") : null;
+    String confirmButtonTitle = options.hasKey("confirmButtonTitle") ? options.getString("confirmButtonTitle") : null;
+    String otherButtonTitle = options.hasKey("otherButtonTitle") ?  options.getString("otherButtonTitle") : null;
     String barColor = options.hasKey("barColor") ? options.getString("barColor") : "";
+
     switch (type) {
       case "normal":
         sweetAlertDialog.changeAlertType(SweetAlertDialog.NORMAL_TYPE);

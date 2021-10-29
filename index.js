@@ -13,20 +13,23 @@ const Native = Platform.OS === 'android' ? NativeModules.RNCustomAlert : NativeM
 const DEFAULT_OPTIONS = {
   title: '',
   subTitle: '',
-  confirmButtonTitle: 'OK',
+  confirmButtonTitle: 'Ok',
   confirmButtonColor: '#000000',
   barColor: '',
-  otherButtonTitle: 'Cancel',
+  otherButtonTitle: 'Cancelar',
   otherButtonColor: '#dedede',
   style: 'success',
   cancellable: true
 }
 
-const CustomAlert = {
+export default CustomAlert = {
   showAlertWithOptions: (options, callback = () => {}) => {
     Native.showAlertWithOptions(options ? options : DEFAULT_OPTIONS, callback)
+
+    if(options.delay && !isNaN(options.delay) && parseInt(options.delay) > 0){
+
+      setTimeout( Native.hideSweetAlert, parseInt(options.delay) )
+    }
   },
   dismissAlert: () => Native.hideSweetAlert(),
 };
-
-export default CustomAlert;
