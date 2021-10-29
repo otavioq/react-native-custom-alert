@@ -21,6 +21,11 @@ ext {
     buildToolsVersion = "30.0.2"
 }
 
+android {
+    compileSdkVersion 30
+    buildToolsVersion '30.0.2'
+}
+
 allprojects {
     repositories {
         mavenCentral()
