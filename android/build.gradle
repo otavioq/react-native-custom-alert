@@ -1,3 +1,5 @@
+apply plugin: 'com.android.library'
+
 buildscript {
     repositories {
         mavenCentral()
@@ -29,4 +31,16 @@ allprojects {
         }
         maven { url "https://jitpack.io" }
     }
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion '30.0.2'
+}
+
+dependencies {
+    implementation 'com.facebook.react:react-native:+'
+    implementation project(path: ':lib')
+
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 }

@@ -9,7 +9,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 
-import CustomAlertDialog.src.main.java.SweetAlert.SweetAlertDialog;
+import com.otavioq.CustomAlert.SweetAlertDialog;
 
 public class RNCustomAlertModule extends ReactContextBaseJavaModule {
   private SweetAlertDialog sweetAlertDialog;
