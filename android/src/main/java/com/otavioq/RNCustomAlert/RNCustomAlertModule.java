@@ -32,10 +32,10 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
     String title = options.hasKey("title") ? options.getString("title") : null;
     String contentText = options.hasKey("subTitle") ? options.getString("subTitle") : null;
     String confirmButtonTitle = options.hasKey("confirmButtonTitle") ? options.getString("confirmButtonTitle") : null;
-    String otherButtonTitle = options.hasKey("otherButtonTitle") ?  options.getString("otherButtonTitle") : null;
+    String otherButtonTitle = options.hasKey("otherButtonTitle") && options.getBoolean("cancellable") == true : options.getString("otherButtonTitle") : null;
     String barColor = options.hasKey("barColor") ? options.getString("barColor") : "";
-    String confirmColor = options.hasKey("confirmColor") ? options.getString("confirmColor") : "#27ae60";
-    String cancelColor = options.hasKey("cancelColor") ? options.getString("cancelColor") : "#d63031";
+    String confirmButtonColor = options.hasKey("confirmButtonColor") ? options.getString("confirmButtonColor") : "#27ae60";
+    String otherButtonColor = options.hasKey("otherButtonColor") ? options.getString("otherButtonColor") : "#d63031";
 
     switch (type) {
       case "normal":
@@ -76,8 +76,8 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
     sweetAlertDialog.setConfirmText(confirmButtonTitle);
     sweetAlertDialog.setCancelText(otherButtonTitle);
     sweetAlertDialog.setContentText(contentText);
-    sweetAlertDialog.setConfirmButtonBackgroundColor(Color.parseColor(confirmColor));
-    sweetAlertDialog.setCancelButtonBackgroundColor(Color.parseColor(cancelColor));
+    sweetAlertDialog.setConfirmButtonBackgroundColor(Color.parseColor(confirmButtonColor));
+    sweetAlertDialog.setCancelButtonBackgroundColor(Color.parseColor(otherButtonColor));
     if (!barColor.equals("")) {
       setBarColor(barColor);
     }
