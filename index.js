@@ -1,28 +1,23 @@
-/**
- * @providesModule RNCustomAlert
- * @author Doko
- * @flow
- */
-
 'use strict';
 
-import React, { NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform } from 'react-native';
 
 const Native = Platform.OS === 'android' ? NativeModules.RNCustomAlert : NativeModules.SweetAlertManager;
 
 const DEFAULT_OPTIONS = {
   title: '',
   subTitle: '',
-  confirmButtonTitle: 'Ok',
-  confirmButtonColor: '#000000',
+  confirmButtonTitle: null,
+  confirmColor: '#000000',
   barColor: '',
-  otherButtonTitle: 'Cancelar',
-  otherButtonColor: '#dedede',
+  otherButtonTitle: null,
+  cancelColor: '#dedede',
   style: 'success',
-  cancellable: true
+  cancellable: true,
+  delay: null
 }
 
-export default CustomAlert = {
+const CustomAlert = {
   showAlertWithOptions: (options, callback = () => {}) => {
     Native.showAlertWithOptions(options ? options : DEFAULT_OPTIONS, callback)
 
@@ -33,3 +28,5 @@ export default CustomAlert = {
   },
   dismissAlert: () => Native.hideSweetAlert(),
 };
+
+export default CustomAlert
