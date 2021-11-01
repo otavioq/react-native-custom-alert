@@ -7,11 +7,11 @@ const Native = Platform.OS === 'android' ? NativeModules.RNCustomAlert : NativeM
 const DEFAULT_OPTIONS = {
   title: '',
   subTitle: '',
-  confirmButtonTitle: null,
-  confirmColor: '#000000',
+  confirmButtonTitle: 'Ok',
+  confirmButtonColor: '#27ae60',
   barColor: '',
-  otherButtonTitle: null,
-  cancelColor: '#dedede',
+  otherButtonTitle: 'Cancel',
+  otherButtonColor: '#d63031',
   style: 'success',
   cancellable: true,
   delay: null
