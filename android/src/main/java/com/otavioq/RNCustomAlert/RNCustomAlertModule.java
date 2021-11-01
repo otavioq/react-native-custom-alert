@@ -53,6 +53,9 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
       case "progress":
         sweetAlertDialog.changeAlertType(SweetAlertDialog.PROGRESS_TYPE);
         break;
+      case "info":
+        sweetAlertDialog.changeAlertType(SweetAlertDialog.INFO_TYPE);
+        break;
       default:
         sweetAlertDialog.changeAlertType(SweetAlertDialog.NORMAL_TYPE);
         break;
@@ -108,6 +111,9 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
         break;
       case "progress":
         sweetAlertDialog.changeAlertType(SweetAlertDialog.PROGRESS_TYPE);
+        break;
+      case "info":
+        sweetAlertDialog.changeAlertType(SweetAlertDialog.INFO_TYPE);
         break;
       default:
         sweetAlertDialog.changeAlertType(SweetAlertDialog.NORMAL_TYPE);
