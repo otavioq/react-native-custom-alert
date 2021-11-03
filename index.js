@@ -13,7 +13,8 @@ const DEFAULT_OPTIONS = {
   otherButtonTitle: 'Cancel',
   otherButtonColor: '#d63031',
   style: 'success',
-  cancellable: true,
+  showCancel: false,
+  cancellable: false,
   delay: null
 }
 

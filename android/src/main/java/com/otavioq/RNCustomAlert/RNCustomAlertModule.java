@@ -9,8 +9,6 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 
-import com.otavioq.CustomAlert.SweetAlertDialog;
-
 public class RNCustomAlertModule extends ReactContextBaseJavaModule {
   private SweetAlertDialog sweetAlertDialog;
 
@@ -36,6 +34,7 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
     String barColor = options.hasKey("barColor") ? options.getString("barColor") : "";
     String confirmButtonColor = options.hasKey("confirmButtonColor") ? options.getString("confirmButtonColor") : "#27ae60";
     String otherButtonColor = options.hasKey("otherButtonColor") ? options.getString("otherButtonColor") : "#d63031";
+    boolean canCancel = options.hasKey("cancelable") ? options.getBoolean("cancelable") : false;
 
     switch (type) {
       case "normal":
@@ -75,6 +74,7 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
         sweetAlertDialog.dismissWithAnimation();
       }
     });
+    sweetAlertDialog.isCancelable(canCancel);
     sweetAlertDialog.setTitleText(title);
     sweetAlertDialog.setConfirmText(confirmButtonTitle);
     sweetAlertDialog.setCancelText(otherButtonTitle);
