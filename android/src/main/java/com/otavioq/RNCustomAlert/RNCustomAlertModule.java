@@ -30,7 +30,7 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
     String title = options.hasKey("title") ? options.getString("title") : null;
     String contentText = options.hasKey("subTitle") ? options.getString("subTitle") : null;
     String confirmButtonTitle = options.hasKey("confirmButtonTitle") ? options.getString("confirmButtonTitle") : null;
-    String otherButtonTitle = options.hasKey("otherButtonTitle") && options.getBoolean("cancellable") == true ? options.getString("otherButtonTitle") : null;
+    String otherButtonTitle = options.hasKey("otherButtonTitle") && options.getBoolean("showCancel") == true ? options.getString("otherButtonTitle") : null;
     String barColor = options.hasKey("barColor") ? options.getString("barColor") : "";
     String confirmButtonColor = options.hasKey("confirmButtonColor") ? options.getString("confirmButtonColor") : "#27ae60";
     String otherButtonColor = options.hasKey("otherButtonColor") ? options.getString("otherButtonColor") : "#d63031";

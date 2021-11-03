@@ -14,7 +14,7 @@ const DEFAULT_OPTIONS = {
   otherButtonColor: '#d63031',
   style: 'success',
   showCancel: false,
-  cancellable: false,
+  cancelable: false,
   delay: null
 }
 
