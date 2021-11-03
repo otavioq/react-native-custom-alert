@@ -110,25 +110,15 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         void onClick(SweetAlertDialog sweetAlertDialog);
     }
 
-    public SweetAlertDialog(Context context) {
-        this(context, NORMAL_TYPE);
+    public SweetAlertDialog(Context context, boolean canCancel) {
+        this(context, NORMAL_TYPE, canCancel);
     }
 
-    public SweetAlertDialog isCancelable( boolean cancelable ) {
-        this.mCancelable = cancelable;
-        return this;
-    }
-
-    public SweetAlertDialog(Context context, int alertType) {
+    public SweetAlertDialog(Context context, int alertType, boolean canCancel) {
         super(context, DARK_STYLE ? R.style.alert_dialog_dark : R.style.alert_dialog_light);
 
-        if(mCancelable == true){
-            setCancelable(true);
-            setCanceledOnTouchOutside(true);
-        } else {
-            setCancelable(false);
-            setCanceledOnTouchOutside(false);
-        }
+        setCancelable(canCancel);
+        setCanceledOnTouchOutside(canCancel);
 
         defStrokeWidth = getContext().getResources().getDimension(R.dimen.buttons_stroke_width);
         strokeWidth = defStrokeWidth;

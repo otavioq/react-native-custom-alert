@@ -24,7 +24,6 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void showAlertWithOptions(ReadableMap options, final Callback acceptCallback) {
 
-    sweetAlertDialog = new SweetAlertDialog(getCurrentActivity());
     
     String type = options.hasKey("style") ? options.getString("style") : "normal";
     String title = options.hasKey("title") ? options.getString("title") : null;
@@ -35,6 +34,8 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
     String confirmButtonColor = options.hasKey("confirmButtonColor") ? options.getString("confirmButtonColor") : "#27ae60";
     String otherButtonColor = options.hasKey("otherButtonColor") ? options.getString("otherButtonColor") : "#d63031";
     boolean canCancel = options.hasKey("cancelable") ? options.getBoolean("cancelable") : false;
+    
+    sweetAlertDialog = new SweetAlertDialog(getCurrentActivity(), canCancel);
 
     switch (type) {
       case "normal":
@@ -74,7 +75,6 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
         sweetAlertDialog.dismissWithAnimation();
       }
     });
-    sweetAlertDialog.isCancelable(canCancel);
     sweetAlertDialog.setTitleText(title);
     sweetAlertDialog.setConfirmText(confirmButtonTitle);
     sweetAlertDialog.setCancelText(otherButtonTitle);
