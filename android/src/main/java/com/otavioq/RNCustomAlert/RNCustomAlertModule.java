@@ -64,23 +64,15 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
     sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
       @Override
       public void onClick(SweetAlertDialog sweetAlertDialog) {
+        acceptCallback.invoke("confirmed");
         sweetAlertDialog.dismissWithAnimation();
-        try {
-          acceptCallback.invoke("confirmed");
-        } catch( RuntimeException e ){
-          System.out.println(e.getMessage());
-        }
       }
     });
     sweetAlertDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
       @Override
       public void onClick(SweetAlertDialog sweetAlertDialog) {
+        acceptCallback.invoke("cancelled");
         sweetAlertDialog.cancel();
-        try {
-          acceptCallback.invoke("cancelled");
-        } catch( RuntimeException e ){
-          System.out.println(e.getMessage());
-        }
       }
     });
     sweetAlertDialog.setTitleText(title);

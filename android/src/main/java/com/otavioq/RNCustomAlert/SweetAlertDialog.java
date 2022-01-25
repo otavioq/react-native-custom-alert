@@ -705,19 +705,25 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.cancel_button) {
             if (mCancelClickListener != null) {
-                mCancelClickListener.onClick(SweetAlertDialog.this);
+                try {
+                    mCancelClickListener.onClick(SweetAlertDialog.this);
+                } catch (RuntimeException e) {}
             } else {
                 dismissWithAnimation();
             }
         } else if (v.getId() == R.id.confirm_button) {
             if (mConfirmClickListener != null) {
-                mConfirmClickListener.onClick(SweetAlertDialog.this);
+                try {
+                    mConfirmClickListener.onClick(SweetAlertDialog.this);
+                } catch (RuntimeException e) {}
             } else {
                 dismissWithAnimation();
             }
         } else if (v.getId() == R.id.neutral_button) {
             if (mNeutralClickListener != null) {
-                mNeutralClickListener.onClick(SweetAlertDialog.this);
+                try {
+                    mNeutralClickListener.onClick(SweetAlertDialog.this);
+                } catch (RuntimeException e) {}
             } else {
                 dismissWithAnimation();
             }
