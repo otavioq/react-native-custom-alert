@@ -24,6 +24,9 @@ class SweetAlertManager: RCTViewManager {
         var convertedStyle = AlertStyle.none
 
         switch style {
+        case "normal":
+            convertedStyle = AlertStyle.none
+            break
         case "error":
             convertedStyle = AlertStyle.error
             break
@@ -33,13 +36,16 @@ class SweetAlertManager: RCTViewManager {
         case "warning":
             convertedStyle = AlertStyle.warning
             break
+        case "info":
+            convertedStyle = AlertStyle.info
+            break
         default:
             convertedStyle = AlertStyle.none
         }
 
         _ = alert.showAlert(title, subTitle: subTitle, style: convertedStyle, buttonTitle: confirmButtonTitle, buttonColor: hexStringToUIColor(hex: confirmButtonColor), otherButtonTitle: otherButtonTitle, otherButtonColor: hexStringToUIColor(hex: otherButtonColor), action: { (isOtherButton: Bool) in
-            // True == isOtherButton.
-            callback([isOtherButton, isOtherButton])
+
+            callback(isOtherButton ? "cancelled" : "confirmed")
         })
     }
 

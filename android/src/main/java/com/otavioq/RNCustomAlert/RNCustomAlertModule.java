@@ -30,9 +30,11 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
     String contentText = options.hasKey("subTitle") ? options.getString("subTitle") : null;
     String confirmButtonTitle = options.hasKey("confirmButtonTitle") ? options.getString("confirmButtonTitle") : null;
     String otherButtonTitle = options.hasKey("otherButtonTitle") && options.getBoolean("showCancel") == true ? options.getString("otherButtonTitle") : null;
+    String neutralButtonTitle = options.hasKey("neutralButtonTitle") && options.getBoolean("showCancel") == true ? options.getString("neutralButtonTitle") : null;
     String barColor = options.hasKey("barColor") ? options.getString("barColor") : "";
     String confirmButtonColor = options.hasKey("confirmButtonColor") ? options.getString("confirmButtonColor") : "#27ae60";
     String otherButtonColor = options.hasKey("otherButtonColor") ? options.getString("otherButtonColor") : "#d63031";
+    String neutralButtonColor = options.hasKey("neutralButtonColor") ? options.getString("neutralButtonColor") : "#d63031";
     boolean canCancel = options.hasKey("cancelable") ? options.getBoolean("cancelable") : false;
     
     sweetAlertDialog = new SweetAlertDialog(getCurrentActivity(), canCancel);
@@ -75,12 +77,23 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
         sweetAlertDialog.cancel();
       }
     });
+
+    sweetAlertDialog.setNeutralClickListener(new SweetAlertDialog.OnSweetClickListener() {
+      @Override
+      public void onClick(SweetAlertDialog sweetAlertDialog) {
+        acceptCallback.invoke("neutral");
+        sweetAlertDialog.dismissWithAnimation();
+      }
+    });
+    
     sweetAlertDialog.setTitleText(title);
     sweetAlertDialog.setConfirmText(confirmButtonTitle);
     sweetAlertDialog.setCancelText(otherButtonTitle);
+    sweetAlertDialog.setNeutralText(neutralButtonTitle);
     sweetAlertDialog.setContentText(contentText);
     sweetAlertDialog.setConfirmButtonBackgroundColor(Color.parseColor(confirmButtonColor));
     sweetAlertDialog.setCancelButtonBackgroundColor(Color.parseColor(otherButtonColor));
+    sweetAlertDialog.setNeutralButtonBackgroundColor(Color.parseColor(neutralButtonColor));
     if (!barColor.equals("")) {
       setBarColor(barColor);
     }

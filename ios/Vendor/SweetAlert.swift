@@ -11,7 +11,7 @@ import UIKit
 import QuartzCore
 
 public enum AlertStyle {
-    case success,error,warning,none
+    case success,error,warning,info,none
     case customImage(imageFile:String)
 }
 
@@ -256,6 +256,9 @@ open class SweetAlert: UIViewController {
             self.animatedView = CancelAnimatedView()
             
         case .warning:
+            self.animatedView = WarningAnimatedView()
+
+        case .info:
             self.animatedView = InfoAnimatedView()
             
         case let .customImage(imageFile):
@@ -450,7 +453,7 @@ class CancelAnimatedView: AnimatableView {
     
 }
 
-class InfoAnimatedView: AnimatableView {
+class WarningAnimatedView: AnimatableView {
     
     var circleLayer = CAShapeLayer()
     var crossPathLayer = CAShapeLayer()
@@ -507,6 +510,62 @@ class InfoAnimatedView: AnimatableView {
     }
 }
 
+class InfoAnimatedView: AnimatableView {
+    
+    var circleLayer = CAShapeLayer()
+    var crossPathLayer = CAShapeLayer()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupLayers()
+    }
+    
+    override func layoutSubviews() {
+        setupLayers()
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    var outlineCircle: CGPath  {
+        let path = UIBezierPath()
+        let startAngle: CGFloat = CGFloat((0) / 180.0 * M_PI)  //0
+        let endAngle: CGFloat = CGFloat((360) / 180.0 * M_PI)   //360
+        path.addArc(withCenter: CGPoint(x: self.frame.size.width/2.0, y: self.frame.size.width/2.0), radius: self.frame.size.width/2.0, startAngle: startAngle, endAngle: endAngle, clockwise: false)
+        
+        let factor:CGFloat = self.frame.size.width / 1.5
+        path.move(to: CGPoint(x: self.frame.size.width/2.0 , y: 15.0))
+        path.addArc(withCenter: CGPoint(x: self.frame.size.width/2.0,y: factor + 10.0), radius: 1.0, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        path.move(to: CGPoint(x: self.frame.size.width/2.0,y: factor + 10.0))
+        path.addLine(to: CGPoint(x: self.frame.size.width/2.0,y: factor))
+        
+        return path.cgPath
+    }
+    
+    func setupLayers() {
+        circleLayer.path = outlineCircle
+        circleLayer.fillColor = UIColor.clear.cgColor;
+        circleLayer.strokeColor = UIColor.colorFromRGB(0x2980B9).cgColor;
+        circleLayer.lineCap = CAShapeLayerLineCap.round
+        circleLayer.lineWidth = 4;
+        circleLayer.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+        circleLayer.position = CGPoint(x: self.frame.size.width/2.0, y: self.frame.size.height/2.0)
+        self.layer.addSublayer(circleLayer)
+    }
+    
+    override func animate() {
+        
+        let colorAnimation = CABasicAnimation(keyPath:"strokeColor")
+        colorAnimation.duration = 1.0;
+        colorAnimation.repeatCount = HUGE
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        colorAnimation.autoreverses = true
+        colorAnimation.fromValue = UIColor.colorFromRGB(0x2980B9).cgColor
+        colorAnimation.toValue = UIColor.colorFromRGB(0x2980B9).cgColor
+        circleLayer.add(colorAnimation, forKey: "strokeColor")
+    }
+}
 
 class SuccessAnimatedView: AnimatableView {
     
