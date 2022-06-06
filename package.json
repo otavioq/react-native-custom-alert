@@ -1,5 +1,5 @@
 {
-  "name": "react-native-custom-alert",
+  "name": "@otavioq/react-native-custom-alert",
   "version": "1.1.0",
   "description": "Custom Alert native library for React Native",
   "main": "index.js",
