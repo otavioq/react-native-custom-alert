@@ -214,12 +214,12 @@
             <Button
                 android:id="@+id/neutral_button"
                 style="@style/dialog_blue_button"
-                android:layout_marginLeft="-10dp"
+                android:layout_marginLeft="-12.5dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/gray_button_background"
                 android:visibility="gone"
                 tools:text="neutral"
-                tools:visibility="gone" />
+                tools:visibility="visible" />
 
             <Button
                 android:id="@+id/confirm_button"

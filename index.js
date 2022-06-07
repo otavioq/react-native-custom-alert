@@ -15,10 +15,14 @@ const DEFAULT_OPTIONS = {
   style: 'success',
   showCancel: false,
   cancelable: false,
-  delay: null
+  delay: 0
 }
 
 const CustomAlert = {
+  /**
+   * @param {DEFAULT_OPTIONS} options
+   * @param {*} callback
+   */
   showAlertWithOptions: (options, callback = () => {}) => {
     Native.showAlertWithOptions(options ? options : DEFAULT_OPTIONS, callback)
 
@@ -27,7 +31,26 @@ const CustomAlert = {
       setTimeout( Native.hideSweetAlert, parseInt(options.delay) )
     }
   },
-  dismissAlert: () => Native.hideSweetAlert(),
+  /**
+   * Dismisses the alert
+   */
+  dismissAlert: Native.hideSweetAlert,
+  /**
+   * Starts spinning (android only)
+   */
+  spin: Native.spin,
+  /**
+   * Stops spinning (android only)
+   */
+  stopSpinning: Native.stopSpinning,
+  /**
+   * Sets the progress bar value (android only)
+   */
+  setProgress: Native.setProgress,
+  /**
+   * Sets the progress bar value (android only)
+   */
+  setInstantProgress: Native.setInstantProgress
 };
 
 export default CustomAlert
