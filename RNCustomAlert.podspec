@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "RNCustomAlert"
-  s.version      = "1.1.2"
+  s.version      = "1.1.3"
   s.summary      = "Custom Alert native library for React Native."
   s.homepage     = "https://github.com/otavioq/react-native-custom-alert.git"
   s.license      = 'MIT'

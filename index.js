@@ -2,7 +2,9 @@
 
 import { NativeModules, Platform } from 'react-native';
 
-const Native = Platform.OS === 'android' ? NativeModules.RNCustomAlert : NativeModules.SweetAlertManager;
+const android = Platform.OS === 'android'
+
+const Native = android ? NativeModules.RNCustomAlert : NativeModules.SweetAlertManager;
 
 const DEFAULT_OPTIONS = {
   title: '',
@@ -34,23 +36,7 @@ const CustomAlert = {
   /**
    * Dismisses the alert
    */
-  dismissAlert: Native.hideSweetAlert,
-  /**
-   * Starts spinning (android only)
-   */
-  spin: Native.spin,
-  /**
-   * Stops spinning (android only)
-   */
-  stopSpinning: Native.stopSpinning,
-  /**
-   * Sets the progress bar value (android only)
-   */
-  setProgress: Native.setProgress,
-  /**
-   * Sets the progress bar value (android only)
-   */
-  setInstantProgress: Native.setInstantProgress
+  dismissAlert: () => {Native.hideSweetAlert()}
 };
 
 export default CustomAlert

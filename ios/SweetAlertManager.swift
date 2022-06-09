@@ -45,7 +45,7 @@ class SweetAlertManager: RCTViewManager {
 
         _ = alert.showAlert(title, subTitle: subTitle, style: convertedStyle, buttonTitle: confirmButtonTitle, buttonColor: hexStringToUIColor(hex: confirmButtonColor), otherButtonTitle: otherButtonTitle, otherButtonColor: hexStringToUIColor(hex: otherButtonColor), action: { (isOtherButton: Bool) in
 
-            callback(isOtherButton ? "cancelled" : "confirmed")
+            callback(isOtherButton ? ["cancelled"] : ["confirmed"])
         })
     }
 
