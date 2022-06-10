@@ -1,30 +1,28 @@
 {
-  "name": "@otavioq/rncustomalert",
-  "version": "1.0.0",
-  "description": "Custom Alert native library for React Native",
+  "name": "rncustomalert",
+  "version": "1.0.1",
+  "description": "Custom native alert for react native",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/otavioq/rncustomalert.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "keywords": [],
+  "keywords": [
+    "alert",
+    "custom-alert",
+    "sweet-alert",
+    "react",
+    "react-native",
+    "android",
+    "ios"
+  ],
   "author": "otavioq",
-  "license": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/otavioq/rncustomalert/issues"
   },
-  "homepage": "https://github.com/otavioq/rncustomalert",
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
-  },
-  "dependencies": {
-    "is-hexcolor": "^1.0.0"
-  }
+  "homepage": "https://github.com/otavioq/rncustomalert#readme"
 }
