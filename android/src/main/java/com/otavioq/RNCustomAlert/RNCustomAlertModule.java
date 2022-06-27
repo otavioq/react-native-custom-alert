@@ -23,7 +23,6 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void showAlertWithOptions(ReadableMap options, final Callback acceptCallback) {
-
     
     String type = options.hasKey("style") ? options.getString("style") : "normal";
     String title = options.hasKey("title") ? options.getString("title") : null;
@@ -36,32 +35,38 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
     String otherButtonColor = options.hasKey("otherButtonColor") ? options.getString("otherButtonColor") : "#d63031";
     String neutralButtonColor = options.hasKey("neutralButtonColor") ? options.getString("neutralButtonColor") : "#3498db";
     boolean canCancel = options.hasKey("cancelable") ? options.getBoolean("cancelable") : false;
-    
-    sweetAlertDialog = new SweetAlertDialog(getCurrentActivity(), canCancel);
+
+    Context activity = getCurrentActivity();
+
+    if (activity == null) {
+      return; 
+    }
+
+    int alertType = 0;
 
     switch (type) {
+      default:
       case "normal":
-        sweetAlertDialog.changeAlertType(SweetAlertDialog.NORMAL_TYPE);
+        alertType = SweetAlertDialog.NORMAL_TYPE;
         break;
       case "error":
-        sweetAlertDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
+        alertType = SweetAlertDialog.ERROR_TYPE;
         break;
       case "success":
-        sweetAlertDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+        alertType = SweetAlertDialog.SUCCESS_TYPE;
         break;
       case "warning":
-        sweetAlertDialog.changeAlertType(SweetAlertDialog.WARNING_TYPE);
+        alertType = SweetAlertDialog.WARNING_TYPE;
         break;
       case "progress":
-        sweetAlertDialog.changeAlertType(SweetAlertDialog.PROGRESS_TYPE);
+        alertType = SweetAlertDialog.PROGRESS_TYPE;
         break;
       case "info":
-        sweetAlertDialog.changeAlertType(SweetAlertDialog.INFO_TYPE);
-        break;
-      default:
-        sweetAlertDialog.changeAlertType(SweetAlertDialog.NORMAL_TYPE);
+        alertType = SweetAlertDialog.INFO_TYPE;
         break;
     }
+    
+    sweetAlertDialog = new SweetAlertDialog(activity, alertType, canCancel);
 
     sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
       @Override

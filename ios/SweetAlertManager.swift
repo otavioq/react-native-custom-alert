@@ -5,11 +5,6 @@ class SweetAlertManager: RCTViewManager {
     var alert = SweetAlert()
 
     @objc
-    func showAlert(_ title: String, callback: RCTResponseSenderBlock) {
-        _ = alert.showAlert(title)
-    }
-
-    @objc
     func showAlertWithOptions(_ options: NSDictionary, callback: @escaping RCTResponseSenderBlock) {
         let title: String = options.object(forKey: "title") as! String
         let subTitle: String = options.object(forKey: "subTitle") as! String
@@ -19,7 +14,7 @@ class SweetAlertManager: RCTViewManager {
         let otherButtonTitle: String = options.object(forKey: "otherButtonTitle") as! String
         let otherButtonColor: String = options.object(forKey: "otherButtonColor") as! String
 
-        // error none success warning
+        // error none success warning info
         let style: String = options.object(forKey: "style") as! String
         var convertedStyle = AlertStyle.none
 
