@@ -1,6 +1,8 @@
 package com.otavioq.RNCustomAlert;
 
 import android.graphics.Color;
+import android.app.Activity;
+import android.content.Context;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
