@@ -1,42 +1,66 @@
 'use strict';
 
-import { NativeModules, Platform } from 'react-native';
+import { Alert, NativeModules, Platform } from 'react-native';
 
 const android = Platform.OS === 'android'
 
 const Native = android ? NativeModules.RNCustomAlert : NativeModules.SweetAlertManager;
 
 const DEFAULT_OPTIONS = {
-  title: '',
-  subTitle: '',
-  confirmButtonTitle: 'Ok',
-  confirmButtonColor: '#27ae60',
-  barColor: '',
-  otherButtonTitle: 'Cancel',
-  otherButtonColor: '#d63031',
-  style: 'success',
-  showCancel: false,
-  cancelable: false,
-  delay: 0
+	title: '',
+	subTitle: '',
+	confirmButtonTitle: 'Ok',
+	confirmButtonColor: '#27ae60',
+	barColor: '',
+	otherButtonTitle: 'Cancel',
+	otherButtonColor: '#d63031',
+	style: 'success',
+	showCancel: false,
+	cancelable: false,
+	delay: 0
 }
 
 const CustomAlert = {
-  /**
-   * @param {DEFAULT_OPTIONS} options
-   * @param {*} callback
-   */
-  showAlertWithOptions: (options, callback = () => {}) => {
-    Native.showAlertWithOptions(options ? options : DEFAULT_OPTIONS, callback)
+	/**
+	 * @param {DEFAULT_OPTIONS} options
+	 * @param {*} callback
+	 */
+	showAlertWithOptions: (options, callback = () => {}) => {
+		Native.showAlertWithOptions(options ? options : DEFAULT_OPTIONS, (action) => {
+			if (action == 'error') {
+				defaultAlert(options, callback)
+			} else {
+				callback(action)
+			}
+		})
 
-    if(options.delay && !isNaN(options.delay) && parseInt(options.delay) > 0){
+		if (options.delay && !isNaN(options.delay) && parseInt(options.delay) > 0) {
 
-      setTimeout( Native.hideSweetAlert, parseInt(options.delay) )
-    }
-  },
-  /**
-   * Dismisses the alert
-   */
-  dismissAlert: () => {Native.hideSweetAlert()}
+			setTimeout(Native.hideSweetAlert, parseInt(options.delay))
+		}
+	},
+	/**
+	 * Dismisses the alert
+	 */
+	dismissAlert: () => { Native.hideSweetAlert() }
 };
+
+const defaultAlert = (options, callback = () => {}) => {
+
+	const buttons = []
+	buttons.push({
+		text: options.confirmButtonTitle || `Ok`,
+		onPress: () => callback('confirmed')
+	})
+	if (options.showCancel) {
+		buttons.push({
+			text: options.otherButtonTitle || `Cancelar`,
+			onPress: () => callback('cancelled'),
+			style: `cancel`
+		})
+	}
+
+	Alert.alert(options.title, options.subTitle, buttons)
+}
 
 export default CustomAlert

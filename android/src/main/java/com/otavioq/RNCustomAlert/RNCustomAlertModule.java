@@ -2,7 +2,6 @@ package com.otavioq.RNCustomAlert;
 
 import android.graphics.Color;
 import android.app.Activity;
-import android.content.Context;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
@@ -25,7 +24,7 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void showAlertWithOptions(ReadableMap options, final Callback acceptCallback) {
-    
+
     String type = options.hasKey("style") ? options.getString("style") : "normal";
     String title = options.hasKey("title") ? options.getString("title") : null;
     String contentText = options.hasKey("subTitle") ? options.getString("subTitle") : null;
@@ -38,10 +37,11 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
     String neutralButtonColor = options.hasKey("neutralButtonColor") ? options.getString("neutralButtonColor") : "#3498db";
     boolean canCancel = options.hasKey("cancelable") ? options.getBoolean("cancelable") : false;
 
-    Context activity = getCurrentActivity();
+    Activity activity = getCurrentActivity();
 
     if (activity == null) {
-      return; 
+      acceptCallback.invoke("error");
+      return;
     }
 
     int alertType = 0;
@@ -67,7 +67,7 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
         alertType = SweetAlertDialog.INFO_TYPE;
         break;
     }
-    
+
     sweetAlertDialog = new SweetAlertDialog(activity, alertType, canCancel);
 
     sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
@@ -91,7 +91,7 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
         sweetAlertDialog.dismissWithAnimation();
       }
     });
-    
+
     sweetAlertDialog.setTitleText(title);
     sweetAlertDialog.setConfirmText(confirmButtonTitle);
     sweetAlertDialog.setCancelText(otherButtonTitle);
