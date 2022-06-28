@@ -54,13 +54,16 @@ const defaultAlert = (options, callback = () => {}) => {
 	})
 	if (options.showCancel) {
 		buttons.push({
-			text: options.otherButtonTitle || `Cancelar`,
+			text: options.otherButtonTitle || `Cancel`,
 			onPress: () => callback('cancelled'),
 			style: `cancel`
 		})
 	}
 
-	Alert.alert(options.title, options.subTitle, buttons)
+	const title = options.subTitle && options.title ? options.title : null
+	const subTitle = options.title && !options.subTitle ? options.title : options.subTitle || null
+
+	Alert.alert(title, subTitle, buttons)
 }
 
 export default CustomAlert
