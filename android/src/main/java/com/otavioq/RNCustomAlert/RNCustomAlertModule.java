@@ -70,26 +70,22 @@ public class RNCustomAlertModule extends ReactContextBaseJavaModule {
 
 		sweetAlertDialog = new SweetAlertDialog(activity, alertType, canCancel);
 
-		sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-			@Override
-			public void onClick(SweetAlertDialog sweetAlertDialog) {
-				acceptCallback.invoke("confirmed");
-				sweetAlertDialog.dismissWithAnimation();
-			}
+		sweetAlertDialog.setConfirmClickListener(sweetAlertDialog -> {
+			acceptCallback.invoke("confirmed");
+			sweetAlertDialog.dismissWithAnimation();
 		});
-		sweetAlertDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-			@Override
-			public void onClick(SweetAlertDialog sweetAlertDialog) {
-				acceptCallback.invoke("cancelled");
-				sweetAlertDialog.cancel();
-			}
+		sweetAlertDialog.setCancelClickListener(sweetAlertDialog -> {
+			acceptCallback.invoke("cancelled");
+			sweetAlertDialog.cancel();
 		});
-		sweetAlertDialog.setNeutralClickListener(new SweetAlertDialog.OnSweetClickListener() {
-			@Override
-			public void onClick(SweetAlertDialog sweetAlertDialog) {
-				acceptCallback.invoke("neutral");
-				sweetAlertDialog.dismissWithAnimation();
-			}
+		sweetAlertDialog.setNeutralClickListener(sweetAlertDialog -> {
+			acceptCallback.invoke("neutral");
+			sweetAlertDialog.dismissWithAnimation();
+		});
+		sweetAlertDialog.setOnDismissListener(sweetAlertDialog -> {
+			try {
+				acceptCallback.invoke("dismiss");
+			} catch (RuntimeException e) {}
 		});
 
 		sweetAlertDialog.setTitleText(title);
